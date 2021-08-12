@@ -32,17 +32,12 @@ def get_all_links(html):
             'year': year,
             'rank': rank
         })
-    print(results)
     return results
 
 
 def write_json(results):
     with open('imdb250function.json', 'w') as file:
         json.dump(results, file, indent=2)
-
-
-new_jsonimdb = json.dumps(get_all_links(get_html(f'https://www.imdb.com/chart/top/?ref_=nv_mv_250')), indent=2)
-print(new_jsonimdb)
 
 
 def main():

@@ -89,14 +89,9 @@ def insert_into_table(results):
             for i in results:
                 fs = ','.join(list(map(lambda x: '`' + x + '`', [*i.keys()])))
                 vs = ','.join(list(map(lambda x: '%(' + x + ')s', [*i.keys()])))
-            query = 'INSERT INTO films_imdb250 (%s) VALUES (%s)' % (fs, vs)
+            query = 'INSERT INTO films_imdb250 %(fs)s VALUES %(vs)s', {'fs': fs, 'vs': vs}
             cursor.executemany(query, results)
             conn.commit()
-        with conn.cursor() as cursor:
-            query = 'SELECT * FROM films_imdb250'
-            cursor.execute(query)
-            for row in cursor:
-                print(row)
 
 
 def main():
